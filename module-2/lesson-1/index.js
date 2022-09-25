@@ -11,14 +11,14 @@ const {
 const newPair = new Keypair();
 
 // Exact the public and private key from the keypair
-const publicKey = new PublicKey(newPair._keypair.publicKey).toString();
+// const publicKey = new PublicKey(newPair._keypair.publicKey).toString();
 const privateKey = newPair._keypair.secretKey;
 
 // Connect to the Devnet
-const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+// const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
 
-console.log('Public Key of the generated keypair', publicKey);
-console.log('Connection object is:', connection);
+// console.log('Public Key of the generated keypair', publicKey);
+// console.log('Connection object is:', connection);
 
 // Get the wallet balance from a given private key
 const getWalletBalance = async () => {
