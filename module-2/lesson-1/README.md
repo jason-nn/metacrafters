@@ -11,7 +11,7 @@ npm init -y
 Install the Solana Web3 JS library
 
 ```zsh
-npm install   --save @solana/web3.js
+npm install --save @solana/web3.js
 ```
 
 ## Running
