@@ -33,6 +33,7 @@ const getWalletBalance = async () => {
       new PublicKey(myWallet.publicKey)
     );
     console.log(
+      // 1 LAMPORT = 0.000000001 SOL
       `Wallet balance: ${parseInt(walletBalance) / LAMPORTS_PER_SOL} SOL`
     );
   } catch (err) {
