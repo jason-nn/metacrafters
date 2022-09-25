@@ -18,6 +18,28 @@ const DEMO_FROM_SECRET_KEY = new Uint8Array([
   234, 164, 248, 21, 79, 165, 216, 134, 181, 130, 147, 72, 65,
 ]);
 
+const getWalletBalanceInLamportsWithPublicKey = async (publicKey) => {
+  try {
+    // Connect to the Devnet
+    const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+    // console.log('Connection object is:', connection);
+
+    // Make a wallet (keypair) from privateKey and get its balance
+    const walletBalance = await connection.getBalance(new PublicKey(publicKey));
+    return parseInt(walletBalance);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const displayWalletBalance = async (walletName, publicKey) => {
+  const walletBalanceInLamports = await getWalletBalanceInLamportsWithPublicKey(
+    publicKey
+  );
+  const walletBalanceInSol = walletBalanceInLamports / LAMPORTS_PER_SOL;
+  console.log(`${walletName} wallet balance: ${walletBalanceInSol} SOL`);
+};
+
 const transferSol = async () => {
   const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
 
@@ -33,6 +55,9 @@ const transferSol = async () => {
   // Generate another Keypair (account we'll be sending to)
   const to = Keypair.generate();
   // updated and newer version of new Keypair()
+
+  await displayWalletBalance('from', from.publicKey);
+  await displayWalletBalance('to', to.publicKey);
 
   // Aidrop 2 SOL to Sender wallet
   console.log('Airdopping some SOL to Sender wallet!');
@@ -54,6 +79,9 @@ const transferSol = async () => {
 
   console.log('Airdrop completed for the Sender account');
 
+  await displayWalletBalance('from', from.publicKey);
+  await displayWalletBalance('to', to.publicKey);
+
   // Send money from "from" wallet and into "to" wallet
   const transaction = new Transaction().add(
     SystemProgram.transfer({
@@ -68,6 +96,9 @@ const transferSol = async () => {
     from,
   ]);
   console.log('Signature is ', signature);
+
+  await displayWalletBalance('from', from.publicKey);
+  await displayWalletBalance('to', to.publicKey);
 };
 
 transferSol();
