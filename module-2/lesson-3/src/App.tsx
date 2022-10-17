@@ -89,6 +89,10 @@ function App() {
     }
   };
 
+  const disconnectWallet = () => {
+    setWalletKey(undefined);
+  };
+
   // HTML code for the app
   return (
     <div className="App">
@@ -108,6 +112,20 @@ function App() {
           </button>
         )}
         {provider && walletKey && <p>Connected account</p>}
+        {provider && walletKey && (
+          <button
+            className="disconnectButton"
+            style={{
+              fontSize: '16px',
+              padding: '15px',
+              fontWeight: 'bold',
+              borderRadius: '5px',
+            }}
+            onClick={disconnectWallet}
+          >
+            Disconnect Wallet
+          </button>
+        )}
 
         {!provider && (
           <p>
