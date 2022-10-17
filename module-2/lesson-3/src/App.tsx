@@ -61,8 +61,11 @@ function App() {
     const provider = getProvider();
 
     // if the phantom provider exists, set this as the provider
-    if (provider) setProvider(provider);
-    else setProvider(undefined);
+    if (provider) {
+      setProvider(provider);
+    } else {
+      setProvider(undefined);
+    }
   }, []);
 
   // prompts user to connect wallet if it exists.
