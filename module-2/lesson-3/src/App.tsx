@@ -94,28 +94,28 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h2>Connect to Phantom Wallet</h2>
-      </header>
-      {provider && !walletKey && (
-        <button
-          style={{
-            fontSize: '16px',
-            padding: '15px',
-            fontWeight: 'bold',
-            borderRadius: '5px',
-          }}
-          onClick={connectWallet}
-        >
-          Connect Wallet
-        </button>
-      )}
-      {provider && walletKey && <p>Connected account</p>}
+        {provider && !walletKey && (
+          <button
+            style={{
+              fontSize: '16px',
+              padding: '15px',
+              fontWeight: 'bold',
+              borderRadius: '5px',
+            }}
+            onClick={connectWallet}
+          >
+            Connect Wallet
+          </button>
+        )}
+        {provider && walletKey && <p>Connected account</p>}
 
-      {!provider && (
-        <p>
-          No provider found. Install{' '}
-          <a href="https://phantom.app/">Phantom Browser extension</a>
-        </p>
-      )}
+        {!provider && (
+          <p>
+            No provider found. Install{' '}
+            <a href="https://phantom.app/">Phantom Browser extension</a>
+          </p>
+        )}
+      </header>
     </div>
   );
 }
