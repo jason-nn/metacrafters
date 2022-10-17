@@ -1,11 +1,13 @@
 import './App.css';
+
 import { PublicKey, Transaction } from '@solana/web3.js';
+
 import { useEffect, useState } from 'react';
 
-// create types
 type DisplayEncoding = 'utf8' | 'hex';
 
 type PhantomEvent = 'disconnect' | 'connect' | 'accountChanged';
+
 type PhantomRequestMethod =
   | 'connect'
   | 'disconnect'
@@ -33,9 +35,8 @@ interface PhantomProvider {
   request: (method: PhantomRequestMethod, params: any) => Promise<unknown>;
 }
 
-/**
- * @description gets Phantom provider, if it exists
- */
+// gets Phantom provider, if it exists
+
 const getProvider = (): PhantomProvider | undefined => {
   if ('solana' in window) {
     // @ts-ignore
@@ -64,10 +65,9 @@ function App() {
     else setProvider(undefined);
   }, []);
 
-  /**
-   * @description prompts user to connect wallet if it exists.
-   * This function is called when the connect wallet button is clicked
-   */
+  // prompts user to connect wallet if it exists.
+  // This function is called when the connect wallet button is clicked
+
   const connectWallet = async () => {
     // @ts-ignore
     const { solana } = window;
